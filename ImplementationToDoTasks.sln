@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34723.18
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Replace.FileName", "Replace.FileName\Replace.FileName.csproj", "{3252B89F-56E9-400C-97EC-5377DE40F007}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Replace.FileNameIFHasNumber", "Replace.FileNameIFHasNumber\Replace.FileNameIFHasNumber.csproj", "{BA82B431-CACE-45F4-85CD-3F07FCE16C32}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EncryptionPassword", "EncryptionPassword\EncryptionPassword.csproj", "{B8BF2A3D-D98C-44AC-9669-72B085AC9471}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3252B89F-56E9-400C-97EC-5377DE40F007}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3252B89F-56E9-400C-97EC-5377DE40F007}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3252B89F-56E9-400C-97EC-5377DE40F007}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3252B89F-56E9-400C-97EC-5377DE40F007}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA82B431-CACE-45F4-85CD-3F07FCE16C32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA82B431-CACE-45F4-85CD-3F07FCE16C32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA82B431-CACE-45F4-85CD-3F07FCE16C32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA82B431-CACE-45F4-85CD-3F07FCE16C32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8BF2A3D-D98C-44AC-9669-72B085AC9471}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8BF2A3D-D98C-44AC-9669-72B085AC9471}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8BF2A3D-D98C-44AC-9669-72B085AC9471}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8BF2A3D-D98C-44AC-9669-72B085AC9471}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BB35DD5D-3B45-449F-8F27-50B239E7036A}
+	EndGlobalSection
+EndGlobal
