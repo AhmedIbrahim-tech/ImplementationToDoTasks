@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImplementationToDoTasks", "EncryptionApp\ImplementationToDoTasks.csproj", "{16D0FAE2-6ADA-4487-80A3-F5D9C9A48861}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImplementationToDoTasks", "ImplementationToDoTasks\ImplementationToDoTasks.csproj", "{16D0FAE2-6ADA-4487-80A3-F5D9C9A48861}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,8 +18,5 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {BB35DD5D-3B45-449F-8F27-50B239E7036A}
 	EndGlobalSection
 EndGlobal
