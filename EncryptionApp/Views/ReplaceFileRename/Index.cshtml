@@ -1,0 +1,46 @@
+﻿@model ReplaceFileRenameModel
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Rename Files in Directory</h2>
+
+    <form asp-action="RenameFiles" method="post">
+        <div class="form-group">
+            <label asp-for="DirectoryPath"></label>
+            <input asp-for="DirectoryPath" class="form-control" />
+            <span asp-validation-for="DirectoryPath" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="SearchPattern"></label>
+            <input asp-for="SearchPattern" class="form-control" />
+            <span asp-validation-for="SearchPattern" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ReplacePattern"></label>
+            <input asp-for="ReplacePattern" class="form-control" />
+            <span asp-validation-for="ReplacePattern" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ContainsNumber">Contains Number</label>
+            <select asp-for="ContainsNumber" class="form-control">
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+            </select>
+            <span asp-validation-for="ContainsNumber" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">Rename Files</button>
+    </form>
+
+    @if (ViewBag.Results != null)
+    {
+        <h3 class="mt-5">Results</h3>
+        <ul>
+            @foreach (var result in ViewBag.Results)
+            {
+                <li>@result</li>
+            }
+        </ul>
+    }
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
