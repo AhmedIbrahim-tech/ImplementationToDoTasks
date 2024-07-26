@@ -1,0 +1,38 @@
+﻿@model List<ImplementationToDoTasks.Models.CreateAccount.CreateAccountClientModel>
+
+<div class="container mt-5">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white text-center">
+            <h2>Clients</h2>
+        </div>
+        <div class="card-body">
+            @if (ViewBag.Message != null)
+            {
+                <div class="alert alert-success">@ViewBag.Message</div>
+            }
+
+            <form asp-action="CreateClientAccounts" method="post">
+                <div class="text-end mb-3">
+                    <button type="submit" class="btn btn-success">Create Client Accounts</button>
+                </div>
+                <table class="table table-hover">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Sno</th>
+                            <th>Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var client in Model)
+                        {
+                            <tr>
+                                <td>@client.SNo</td>
+                                <td>@client.FullName</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
