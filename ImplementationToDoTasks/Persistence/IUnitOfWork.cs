@@ -16,5 +16,6 @@ public interface IUnitOfWork : IDisposable
 
 
     // Repository
-    ClientRepository Client { get; }
+    IClientRepository Client { get; }
+    IInsuranceCompanyRepository InsuranceCompany { get; }
 }

@@ -18,9 +18,11 @@ new AppDbContext(builder.Configuration.GetConnectionString("DefaultLiveConnectio
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
-builder.Services.AddScoped<ClientRepository, ClientRepository>();
+builder.Services.AddScoped<IClientRepository, ClientRepository>();
+builder.Services.AddScoped<IInsuranceCompanyRepository, InsuranceCompanyRepository>();
 
 builder.Services.AddScoped<ICreateAccountClientServices, CreateAccountClientServices>();
+builder.Services.AddScoped<IInsuranceCompanyService, InsuranceCompanyService>();
 builder.Services.AddScoped<INameReplacerService,NameReplacerService>();
 builder.Services.AddScoped<IReplaceFileRenameServices, ReplaceFileRenameServices>();
 

@@ -10,7 +10,8 @@ public class UnitOfWork : IUnitOfWork
     private readonly AppDbContext _context;
     private readonly IConfiguration _configuration;
 
-    private ClientRepository _clientRepository;
+    private IClientRepository _clientRepository;
+    private IInsuranceCompanyRepository _insuranceCompanyRepository;
 
     public UnitOfWork(AppDbContext context, IConfiguration configuration)
     {
@@ -18,7 +19,8 @@ public class UnitOfWork : IUnitOfWork
         _configuration = configuration;
     }
 
-    public ClientRepository Client => _clientRepository ?? new ClientRepository(_context);
+    public IClientRepository Client => _clientRepository ?? new ClientRepository(_context);
+    public IInsuranceCompanyRepository InsuranceCompany => _insuranceCompanyRepository ?? new InsuranceCompanyRepository(_context);
 
 
     public void BeginTransaction()
