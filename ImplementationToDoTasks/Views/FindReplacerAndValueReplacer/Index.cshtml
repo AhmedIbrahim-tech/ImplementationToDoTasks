@@ -1,0 +1,92 @@
+﻿@model ImplementationToDoTasks.Models.ReplaceValueModel
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Replace Names and Values in Database</h2>
+
+    @if (ViewBag.Message != null)
+    {
+        <div class="alert @ViewBag.AlertClass">@ViewBag.Message</div>
+    }
+
+    <!-- Form for fetching values -->
+    <form asp-action="FetchValues" method="post">
+        <div class="form-group">
+            <label asp-for="ColumnName">Column Name</label>
+            <input asp-for="ColumnName" class="form-control" required />
+            <span asp-validation-for="ColumnName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="OldValue">Search Value</label>
+            <input asp-for="OldValue" class="form-control" required />
+            <span asp-validation-for="OldValue" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="NewValue">New Value</label>
+            <input asp-for="NewValue" class="form-control" />
+            <span asp-validation-for="NewValue" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">Fetch Values</button>
+    </form>
+
+    @if (ViewBag.Results != null)
+    {
+        <h3 class="mt-5">Tables Containing the Column</h3>
+        <ul>
+            @foreach (var result in (List<TableValues>)ViewBag.Results)
+            {
+                <li>@result.TableName</li>
+            }
+        </ul>
+
+        <!-- Form for generating update queries -->
+        <form asp-action="GenerateUpdateQueries" method="post">
+            <input type="hidden" name="ColumnName" value="@ViewBag.ColumnName" />
+            <input type="hidden" name="OldValue" value="@ViewBag.SearchValue" />
+            <input type="hidden" name="NewValue" value="@ViewBag.NewValue" />
+            <button type="submit" class="btn btn-primary mt-3">Generate Update Queries</button>
+        </form>
+    }
+
+    @if (ViewBag.GeneratedQueries != null)
+    {
+        <h3 class="mt-5">Generated Update Queries</h3>
+        <textarea id="queriesTextArea" class="form-control" rows="10" readonly>@string.Join("\n\n", ViewBag.GeneratedQueries)</textarea>
+        <button id="copyButton" class="btn btn-secondary mt-3">Copy Queries</button>
+
+        <!-- Form for executing update queries -->
+        <form asp-action="ExecuteUpdateQueries" method="post">
+            <input type="hidden" name="ColumnName" value="@ViewBag.ColumnName" />
+            <input type="hidden" name="OldValue" value="@ViewBag.SearchValue" />
+            <input type="hidden" name="NewValue" value="@ViewBag.NewValue" />
+            <button type="submit" class="btn btn-danger mt-3">Execute Update Queries</button>
+        </form>
+    }
+
+    @if (ViewBag.ExecutedQueries != null && ViewBag.ProcessedTables != null)
+    {
+        <h3 class="mt-5">Processed Tables</h3>
+        <ul>
+            @foreach (var table in ViewBag.ProcessedTables)
+            {
+                <li>@table</li>
+            }
+        </ul>
+
+        <h3 class="mt-5">Executed Queries</h3>
+        <textarea id="queriesTextArea" class="form-control" rows="10" readonly>@string.Join("\n\n", ViewBag.ExecutedQueries)</textarea>
+        <button id="copyButton" class="btn btn-secondary mt-3">Copy Queries</button>
+    }
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#copyButton').click(function () {
+            var copyText = document.getElementById('queriesTextArea');
+            copyText.select();
+            document.execCommand('copy');
+            alert('Queries copied to clipboard');
+        });
+    });
+</script>

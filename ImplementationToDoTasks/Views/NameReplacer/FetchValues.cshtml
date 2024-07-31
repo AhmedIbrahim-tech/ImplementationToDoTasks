@@ -1,0 +1,87 @@
+﻿@model ImplementationToDoTasks.Models.ReplaceValueModel
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Fetch and Replace Values in Database</h2>
+
+    @if (ViewBag.Message != null)
+    {
+        <div class="alert @ViewBag.AlertClass">@ViewBag.Message</div>
+    }
+
+    <form asp-action="FetchValues" method="post">
+        <div class="form-group">
+            <label asp-for="OldValue"></label>
+            <input asp-for="OldValue" class="form-control" />
+            <span asp-validation-for="OldValue" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="NewValue"></label>
+            <input asp-for="NewValue" class="form-control" />
+            <span asp-validation-for="NewValue" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ColumnName"></label>
+            <select asp-for="ColumnName" class="form-control" multiple>
+                <!-- قم بإدراج أسماء الأعمدة هنا -->
+                <option value="Column1">Column1</option>
+                <option value="Column2">Column2</option>
+                <!-- إضافة المزيد من الأعمدة حسب الحاجة -->
+            </select>
+            <span asp-validation-for="ColumnName" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">Fetch Values</button>
+    </form>
+
+    @if (ViewBag.Results != null)
+    {
+        <h3 class="mt-5">Fetched Values</h3>
+        @foreach (var table in (Dictionary<string, List<string>>)ViewBag.Results)
+        {
+            <h4>@table.Key</h4>
+            <ul>
+                @foreach (var value in table.Value)
+                {
+                    <li>@value</li>
+                }
+            </ul>
+        }
+
+        <form asp-action="ReplaceValues" method="post">
+            <input type="hidden" asp-for="OldValue" value="@ViewBag.OldValue" />
+            <input type="hidden" asp-for="NewValue" value="@ViewBag.NewValue" />
+            @foreach (var column in (List<string>)ViewBag.Columns)
+            {
+                <input type="hidden" name="Columns" value="@column" />
+            }
+            <button type="submit" class="btn btn-danger mt-3">Replace Values</button>
+        </form>
+    }
+
+    @if (ViewBag.ExecutedQueries != null && ViewBag.ProcessedTables != null)
+    {
+        <h3 class="mt-5">Processed Tables</h3>
+        <ul>
+            @foreach (var table in ViewBag.ProcessedTables)
+            {
+                <li>@table</li>
+            }
+        </ul>
+
+        <h3 class="mt-5">Executed Queries</h3>
+        <textarea id="queriesTextArea" class="form-control" rows="10" readonly>@string.Join("\n\n", ViewBag.ExecutedQueries)</textarea>
+        <button id="copyButton" class="btn btn-secondary mt-3">Copy Queries</button>
+    }
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#copyButton').click(function () {
+            var copyText = document.getElementById("queriesTextArea");
+            copyText.select();
+            document.execCommand("copy");
+            alert("Queries copied to clipboard");
+        });
+    });
+</script>
